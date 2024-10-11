@@ -1,0 +1,17 @@
+ [HttpGet("Mensagem", Name = "GeMensagem")]
+        public ActionResult<float> GetMensagem()
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                var client = new RestClient("https://api.z-api.io/instances/3D6A30CF840420C905378A9CC3C58B07/token/926E92058B21DA3BAE825136/send-text");
+                var request = new RestRequest();
+                request.Method = Method.Post;
+                request.AddHeader("content-type", "application/json");
+                request.AddHeader("client-token", "F6fba49b09216468e8b237f2f47361074S");
+                var payload = new { phone = "28992729073", message = "Carla madeiro" };
+                request.AddJsonBody(payload);
+
+                RestResponse response = client.Execute(request);
+            }
+            return Ok(1.0);
+        }
